@@ -2,11 +2,11 @@
 
 ## General information
 
-**Duration**: 3 hours (max 1 hour theory)
+**Duration**: 3 hours (1h theory, 2h practic)
 
-**Primary teacher**: <>
+**Primary teacher**: 
 
-**Secondary teacher**: <>
+**Secondary teacher**: 
 
 ## Goal
 At the end of the lesson the student should
