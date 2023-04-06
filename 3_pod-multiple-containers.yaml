@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  imagePullSecrets:     # needed only if you want to pull an image from a private registry
+    - name: none
+  restartPolicy: Never
+  initContainers:
+  - name: init-pod
+    image: busybox:1.28
+    command: ['sh', '-c', 'for i in {1..20}; do sleep 1; if nslookup 8.8.8.8; then exit 0; fi; done; exit 1']
+  containers:
+  - name: nginx
+    image: nginx:latest
+    ports:
+      - containerPort: 80
+  volumes: []
+
+#ephemeral container: kubectl debug -it nginx --image=busybox:1.28 --target=nginx
+#in another terminal: kubectl describe pod nginx
+#check out the IP address after deleting the pod
+
+
+#10.0.0.1

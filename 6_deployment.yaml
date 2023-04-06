@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx        #has to match .spec.template.metadata.labels
+  template:
+    metadata:
+      labels:
+        app: nginx      #has to match .spec.selector.matchLabels
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+
+#kubectl rollout history deployment nginx-deployment
+#kubectl rollout undo deployment/nginx-deployment --to-revision=1
+
+#kubectl scale deployment/nginx-deployment --replicas=3
