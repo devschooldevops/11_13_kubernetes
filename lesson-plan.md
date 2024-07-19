@@ -10,7 +10,12 @@
 **Secondary teacher** (if needed): 
 
 ## Goal
-At the end of the lesson the student should
+At the end of the **first** lesson, the students should:
+- know what kubernetes is and what the advantages/ use cases are
+- know how to create a kubernetes cluster
+- know how to deploy a containerized application that was created in an earlier lesson (docker image)
+
+At the end of the **second** lesson, the student should:
 - know what kubernetes is and what the advantages/ use cases are
 - know how to create a kubernetes cluster
 - know how to deploy a containerized application that was created in an earlier lesson (docker image)
