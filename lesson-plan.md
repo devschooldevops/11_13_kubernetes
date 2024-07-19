@@ -1,3 +1,4 @@
+
 # Lesson plan
 
 ## General information
@@ -6,7 +7,7 @@
 
 **Primary teacher**: 
 
-**Secondary teacher**: 
+**Secondary teacher** (if needed): 
 
 ## Goal
 At the end of the lesson the student should
@@ -28,13 +29,16 @@ Example:
 - what do the students need to know before the lesson
 
 ## Agenda
-Example:
-- 0-5 min: introduction;
-- 5-25 min: slides; etc.
+The agenda must contain:
+- presentation of the technology in the industry (pros and cons)
+- introduction to the technology
+- lesson core (ideally as much practical exercises as possible) **up to the trainer**
+- re-cap of the most important conceps
+- Menti/Kahoot evaluation
+- homework
 
 ## Feedback from students
 (generic survey will be setup)
 
 ## Feedback from teachers:
 (generic survey will be setup)
-
