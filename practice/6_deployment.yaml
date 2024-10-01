@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: kubernetes-bootcamp
+  name: kubernetes-bootcamp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kubernetes-bootcamp
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: kubernetes-bootcamp
+    spec:
+      containers:
+        - image: gcr.io/google-samples/kubernetes-bootcamp:v1
+          name: kubernetes-bootcamp
+          ports:
+            - containerPort: 8080
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: kubernetes-bootcamp
+  name: kubernetes-bootcamp
+spec:
+  ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: kubernetes-bootcamp
+  type: NodePort
+
+
+#kubectl get deployments
+#kubectl get replicaset
+#kubectl scale deployments/kubernetes-bootcamp --replicas=4
+#kubectl describe deployments/kubernetes-bootcamp
+#kubectl scale deployments/kubernetes-bootcamp --replicas=2
+
+#kubectl edit deploy kubernetes-bootcamp set image version to v2
+#kubectl get pod -w
+#kubectl get deploy
+#kubectl get rs
+#Use curl to confirm the update was done
+
+#kubectl edit deploy kubernetes-bootcamp set image version to v10
+#what's the issue ?
+#kubectl get pod -w
+#kubectl get deploy
+#kubectl get rs
+#kubectl rollout undo deployments/kubernetes-bootcamp

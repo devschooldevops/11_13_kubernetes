@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-first-pod
+  labels:
+    app: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:latest
+    ports:
+      - containerPort: 80
+
+#kubectl get pod
+#kubectl get all -A
+#kubectl apply -f 2_first-pod.yaml
+#kubectl describe pod my-first-pod
+#kubectl exec -it my-first-pod bash
+
+
+#Exerciese create nginx pod -> describe my-first-pod to get IP -> exec curl in the new container
+#Exerciese create nginx_ns pod in a new namespace (prod_env) with the following label: (env: prod) -> delete the pod and the namespace

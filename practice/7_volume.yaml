@@ -1,0 +1,88 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: task-pv-volume
+  labels:
+    type: local
+spec:
+  storageClassName: hostpath # differs per cloud provider google,amazon,microsoft,...
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce  # ReadOnlyMany; ReadWriteMany; ReadWriteOncePod
+  hostPath:
+    path: "/Users/bc47nw/dev_school_docker/11_13_kubernetes/practice/data" #change with your local path
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: task-pv-claim
+spec:
+  storageClassName: hostpath
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: task-pv-pod
+  labels:
+    app: nginx-pv
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-pv
+  template:
+    metadata:
+      labels:
+        app: nginx-pv
+    spec:
+      volumes:
+        - name: task-pv-storage
+          persistentVolumeClaim:
+            claimName: task-pv-claim
+        - name: shared-data
+          emptyDir: { }
+      containers:
+        - name: task-pv-container
+          image: nginx
+          ports:
+            - containerPort: 80
+              name: "http-server"
+          volumeMounts:
+            - mountPath: "/usr/share/nginx/html"
+              name: task-pv-storage
+            - mountPath: /pod-empty-dir
+              name: shared-data
+
+
+#kubectl get storageclass
+#kubectl get pv
+#kubectl get pvc
+#Create a index.html in the local mount for your volume
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: nginx
+  name: frontend
+spec:
+  ports:
+    - port: 8000
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app: nginx-pv
+  type: NodePort
